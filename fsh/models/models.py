@@ -13,7 +13,7 @@ class Product(db.Model):
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(240))
     weight = db.Column(db.Integer, nullable=False)
-    picture = db.Column(db.String(80))
+    image = db.Column(db.String(80))
 
     taken = db.Column(db.Boolean, default=False)
 

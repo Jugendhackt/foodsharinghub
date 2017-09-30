@@ -6,6 +6,9 @@
     <div class="entry col-sm-4">
       <p>{{ entry.name }}</p>
       {{ entry.weight }}
+      {% if entry.image is not none %}
+      <img class="preview" src="{{ url_for('api.image', filename=entry.image) }}"></img>
+      {% endif %}
       <form action="{{ url_for('api.take') }}/{{ entry.id }}" method="post">
         <div class="form-group row">
           <div class="col-sm-4">

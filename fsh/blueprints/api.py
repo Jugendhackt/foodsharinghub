@@ -1,4 +1,7 @@
-from flask import Blueprint, jsonify, request, render_template, redirect, url_for
+import uuid
+import os
+from flask import Blueprint, jsonify, request, render_template, redirect, url_for, send_from_directory
+from flask import current_app as app
 
 import fsh.models.models as models
 
@@ -7,7 +10,7 @@ bp = Blueprint('api', __name__)
 
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+           filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
 
 
 @bp.route("/")
@@ -26,6 +29,14 @@ def add_post():
     name = request.form['product']
     weight = request.form['weight']
     entry = models.Product(name=name, weight=weight)
+
+    if 'image' in request.files:
+        file = request.files['image']
+        if file.filename != "" and allowed_file(file.filename):
+            filename = str(uuid.uuid4()) + "." + file.filename.rsplit('.', 1)[1].lower()
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            entry.image = filename
+
     models.db.session.add(entry)
     models.db.session.commit()
     return redirect(url_for('api.index'))
@@ -56,3 +67,8 @@ def take_post(id):
     models.db.session.add(entry)
     models.db.session.commit()
     return redirect(url_for('api.take'))
+
+
+@bp.route("/image/<path:filename>")
+def image(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
