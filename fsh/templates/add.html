@@ -3,15 +3,15 @@
 <div class="container">
   <form action="{{ url_for('api.add_post') }}" method="post" enctype=multipart/form-data>
     <div class="form-group row">
-      <label for="product" class="col-sm-2 col-form-label">Product</label>
+      <label for="product" class="col-sm-2 col-form-label">Produkt</label>
       <div class="col-sm-10">
         <input class="form-control" id="product" name="product"></input>
       </div>
-      <label for="description" class="col-sm-2">Description</label>
+      <label for="description" class="col-sm-2">Beschreibung</label>
       <div class="col-sm-10">
-        <input class="form-control" id="description" name="description" placeholder="e.g. where did you get it? Why did you leave it here?"></input>
+        <input class="form-control" id="description" name="description" placeholder="z.B. Wo ist's übrig geblieben?"></input>
       </div>
-      <label for="weight" class="col-sm-2 col-form-label">Weight</label>
+      <label for="weight" class="col-sm-2 col-form-label">Gewicht</label>
       <div class="col-sm-10">
         <input class="form-control" id="weight" placeholder="100g" name="weight"></input>
       </div>
