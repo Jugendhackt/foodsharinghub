@@ -1,0 +1,15 @@
+html, body {
+  height: 100%;
+}
+
+#landing {
+  height: 100%;
+}
+
+#landing>div {
+  height: 50%;
+}
+
+#landing {
+  font-size: 2em;
+}

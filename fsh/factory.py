@@ -8,7 +8,7 @@ def create_app(config=None):
 
     register_db(app)
     register_cli(app)
-    # register_blueprints(app)
+    register_blueprints(app)
 
     return app
 
