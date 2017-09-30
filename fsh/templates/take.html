@@ -4,17 +4,17 @@
   <div class="row">
     {% for entry in entries %}
     <div class="entry col-sm-4">
-      <p>{{ entry.name }}</p>
-      {{ entry.weight }}
+      <h2>{{ entry.name }}</h2>
+      noch {{ entry.weight }}g übrig
       {% if entry.image is not none %}
       <img class="preview" src="{{ url_for('api.image', filename=entry.image) }}"></img>
       {% endif %}
       <form action="{{ url_for('api.take') }}/{{ entry.id }}" method="post">
         <div class="form-group row">
-          <div class="col-sm-4">
+          <div class="col-4">
             <input class="form-control" id="weight" name="weight" placeholder="Gewicht"></input>
           </div>
-          <button class="col-sm-8 btn btn-primary" type="submit" name="{{ entry.id }}">Nehmen</button>
+          <button class="col-8 btn btn-primary btn-block" type="submit" name="{{ entry.id }}">Nehmen</button>
         </div>
       </form>
     </div>
