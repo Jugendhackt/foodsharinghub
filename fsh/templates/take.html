@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block body %}
+<div class="container">
+  <div class="row">
+    {% for entry in entries %}
+    <div class="entry col-sm-4">
+      <p>{{ entry.product.name }}</p>
+      {{ entry.weight }}
+      <form action="{{ url_for('api.take') }}/{{ entry.id }}" method="post">
+        <div class="form-group row">
+          <div class="col-sm-4">
+            <input class="form-control" id="weight" name="weight"></input>
+          </div>
+          <button class="col-sm-8 btn btn-primary" type="submit" name="{{ entry.id }}">Nehmen</button>
+        </div>
+      </form>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

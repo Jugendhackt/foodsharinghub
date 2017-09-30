@@ -30,3 +30,11 @@ def register_cli(app):
         from .models import db
         import fsh.models.models  # make sure all models are imported
         db.create_all()
+
+    @app.cli.command("prepopulate")
+    def prepopulate():
+        from .models.models import Category, Product, db
+        c = Category(name="Backwaren")
+        p = Product(name="Brot", category=c)
+        db.session.add(c)
+        db.session.commit()
