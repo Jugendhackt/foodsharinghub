@@ -28,3 +28,7 @@ html, body {
 .preview {
   width: inherit;
 }
+
+.buttons {
+  float: right;
+}
