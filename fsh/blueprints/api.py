@@ -23,9 +23,9 @@ def add():
 
 @bp.route("/add", methods=["POST"])
 def add_post():
-    product = models.Product.query.filter_by(name=request.form['product']).first()
+    name = request.form['product']
     weight = request.form['weight']
-    entry = models.ProductEntry(product=product, weight=weight)
+    entry = models.Product(name=name, weight=weight)
     models.db.session.add(entry)
     models.db.session.commit()
     return redirect(url_for('api.index'))
@@ -34,13 +34,13 @@ def add_post():
 
 @bp.route("/take", methods=["GET"])
 def take():
-    entries = models.ProductEntry.query.filter_by(taken=False)
+    entries = models.Product.query.filter_by(taken=False)
     return render_template('take.html', entries=entries)
 
 
 @bp.route("/take/<id>", methods=["POST"])
 def take_post(id):
-    entry = models.ProductEntry.query.get(id)
+    entry = models.Product.query.get(id)
 
     if request.form['weight'] == '':
         weight_taken = None

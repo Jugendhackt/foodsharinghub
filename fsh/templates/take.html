@@ -4,7 +4,7 @@
   <div class="row">
     {% for entry in entries %}
     <div class="entry col-sm-4">
-      <p>{{ entry.product.name }}</p>
+      <p>{{ entry.name }}</p>
       {{ entry.weight }}
       <form action="{{ url_for('api.take') }}/{{ entry.id }}" method="post">
         <div class="form-group row">
