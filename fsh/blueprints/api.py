@@ -28,6 +28,9 @@ def add():
 def add_post():
     name = request.form['product']
     weight = request.form['weight']
+    if weight.endswith("g"):
+        weight = weight[:-1]
+    weight = int(weight)
     description = request.form['description']
     entry = models.Product(name=name, weight=weight, description=description)
 
