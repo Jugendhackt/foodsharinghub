@@ -28,7 +28,8 @@ def add():
 def add_post():
     name = request.form['product']
     weight = request.form['weight']
-    entry = models.Product(name=name, weight=weight)
+    description = request.form['description']
+    entry = models.Product(name=name, weight=weight, description=description)
 
     if 'image' in request.files:
         file = request.files['image']

@@ -21,7 +21,8 @@ html, body {
 .entry {
   border-style: solid;
   border-width: 1px;
-  border-color: #222;
+  border-radius: 5px;
+  border-color: #999;
 }
 
 .preview {
